@@ -62,7 +62,8 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     uR = avgPower + u; //right motor+ correct force
     uL = avgPower - u; //left motor
 
-    uR = uR * Kr;
+    //uR = uR * Kr;
+    uR=100;
     uL = uL * Kl;
 
     if (uR > 127) uR = 127; //limits
