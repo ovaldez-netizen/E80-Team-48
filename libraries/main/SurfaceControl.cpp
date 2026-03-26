@@ -44,9 +44,8 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     }
 
     // set up variables
-    int x_des = getWayPoint(0);
-    int y_des = getWayPoint(1);
-    int y_des = getWayPoint(1);
+    float x_des = getWayPoint(0);
+    float y_des = getWayPoint(1);
 
     // Set the values of yaw_des, yaw, yaw_error, control effort (u), uL, and uR appropriately for P control
     // You can use trig functions (atan2 might be useful)
@@ -54,19 +53,19 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     // You can access the yaw calculated in XYStateEstimator.cpp using state->yaw
 
     ///////////////////////////////////////////////////////////
-    yaw_des = atan2(y_des - state->y, x_des - state->x);
-    yaw = state->yaw;
+    yaw_des = atan2(y_des - state->y, x_des - state->x); //using current corrdinates calculate target rad, yawdes​=atan2(ydes​−y,xdes​−x)
+    yaw = state->yaw; //read rad
     yaw_error = angleDiff(yaw_des - yaw);
 
     u = Kp * yaw_error;
 
-    uR = avgPower + u;
-    uL = avgPower - u;
+    uR = avgPower + u; //right motor+ correct force
+    uL = avgPower - u; //left motor
 
     uR = uR * Kr;
     uL = uL * Kl;
 
-    if (uR > 127) uR = 127;
+    if (uR > 127) uR = 127; //limits
     if (uR < 0)   uR = 0;
     if (uL > 127) uL = 127;
     if (uL < 0)   uL = 0;
