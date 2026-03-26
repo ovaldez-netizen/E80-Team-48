@@ -46,7 +46,14 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     // set up variables
     int x_des = getWayPoint(0);
     int y_des = getWayPoint(1);
+    int y_des = getWayPoint(1);
 
+    // Set the values of yaw_des, yaw, yaw_error, control effort (u), uL, and uR appropriately for P control
+    // You can use trig functions (atan2 might be useful)
+    // You can access the x and y coordinates calculated in XYStateEstimator.cpp using state->x and state->y respectively
+    // You can access the yaw calculated in XYStateEstimator.cpp using state->yaw
+
+    ///////////////////////////////////////////////////////////
     yaw_des = atan2(y_des - state->y, x_des - state->x);
     yaw = state->yaw;
     yaw_error = angleDiff(yaw_des - yaw);
