@@ -28,8 +28,8 @@ void XYStateEstimator::updateState(imu_state_t * imu_state_p, gps_state_t * gps_
     float heading = imu_state_p -> heading;
     float currentX = X*(PI/180);
     float currentY = Y*(PI/180);
-    float originX = origin_lon*(PI/180)
-    float originY = origin_lat*(PI/180)
+    float originX = origin_lon*(PI/180)；
+    float originY = origin_lat*(PI/180)；
     float currentHead = heading*(PI/180);
     // set the values of state.x, state.y, and state.yaw
     // It can make use of the constants RADIUS_OF_EARTH, origin_lat, origin_lon (see XYStateEstimator.h)
