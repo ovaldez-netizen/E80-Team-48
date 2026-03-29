@@ -16,7 +16,7 @@ void SurfaceControl::init(const int totalWayPoints_in, double * wayPoints_in, in
   totalWayPoints = totalWayPoints_in;
   // create wayPoints array on the Heap so that it isn't erased once the main Arduino loop starts
   wayPoints = new double[2*totalWayPoints]; // Create a 1-d array to hold the waypoints in the format x0,y0,x1,y1,...
-  for (int i=0; i<totalWayPoints; i++) { 
+  for (int i=0; i<2*totalWayPoints; i++) {
     wayPoints[i] = wayPoints_in[i];
   }
   navigateDelay = navigateDelay_in;
@@ -44,8 +44,8 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     }
 
     // set up variables
-    int x_des = getWayPoint(0);
-    int y_des = getWayPoint(1);
+    float x_des = getWayPoint(0);
+    float y_des = getWayPoint(1);
 
     // Set the values of yaw_des, yaw, yaw_error, control effort (u), uL, and uR appropriately for P control
     // You can use trig functions (atan2 might be useful)
@@ -53,8 +53,22 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     // You can access the yaw calculated in XYStateEstimator.cpp using state->yaw
 
     ///////////////////////////////////////////////////////////
-    // INSERT P CONTROL CODE HERE
-    ///////////////////////////////////////////////////////////
+    yaw_des = atan2(y_des - state->y, x_des - state->x); //using current corrdinates calculate target rad, yawdes​=atan2(ydes​−y,xdes​−x)
+    yaw = state->yaw; //read rad
+    yaw_error = angleDiff(yaw_des - yaw);
+
+    u = Kp * yaw_error;
+
+    uR = avgPower + u; //right motor+ correct force
+    uL = avgPower - u; //left motor
+
+    uR = uR * Kr;
+    uL = uL * Kl;
+
+    if (uR > 127) uR = 127; //limits
+    if (uR < 0)   uR = 0;
+    if (uL > 127) uL = 127;
+    if (uL < 0)   uL = 0;
     
   }
   else {
@@ -135,7 +149,7 @@ void SurfaceControl::updatePoint(float x, float y) {
       delayStartTime = 0;
       changingWPMessage = "Got to surface waypoint " + String(currentWayPoint)
         + ", now directing to next point";
-      atPoint = 1;
+      atPoint = 0;
       currentWayPoint++;
     }
     if (currentWayPoint == totalWayPoints) {
