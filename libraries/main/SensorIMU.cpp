@@ -68,8 +68,7 @@ void SensorIMU::read(void) {
   getOrientation(state.accelX,state.accelY,state.accelZ,state.magX,state.magY,state.magY);
 }
 
-String SensorIMU::printRollPitchHeading(vo
-id) {
+String SensorIMU::printRollPitchHeading(void) {
   String printString = "IMU:"; 
   printString += " roll: ";
   printString += String(state.roll);
@@ -82,7 +81,7 @@ id) {
   printString += "[deg]";
   printString += "Xmag value: ";
   printString += String(state.magX);
-  printString += "[uT]"
+  printString += "[uT]";
   return printString; 
 }
 
