@@ -4,7 +4,7 @@
 %% sample number)
 
 % Conversion: = 0.9V/278Tu = 0.00324 V per Teensy Unit [from lab 2]
-pressure = A00 .* 0.00324
+pressure = ((A00 .* 0.00324) - 3.32)/(-0.416)
 thermistor = A01 .* 0.00324
 PAR = A02 .* 0.00324
 
