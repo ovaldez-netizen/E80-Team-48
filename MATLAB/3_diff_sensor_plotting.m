@@ -4,9 +4,9 @@
 %% sample number)
 
 % Conversion: = 0.9V/278Tu = 0.00324 V per Teensy Unit [from lab 2]
-pressure = 0.00324 * double(A00) * (-2.4) + 7.97 % conversion based on calibration
-thermistor = double(A01) * 0.00324 * (-0.391) + 20.6
-PAR = 558 * double(A02) * 0.00324 * 558 - 26.3
+pressure = (0.00324 * double(A00)) * (-2.4) + 7.97 % conversion based on calibration
+thermistor = (double(A01) * 0.00324) * (-0.391) + 20.6
+PAR = (double(A02) * 0.00324) * 558 - 26.3
 
 
 % Teensy sampling frequency = 10 Hz
