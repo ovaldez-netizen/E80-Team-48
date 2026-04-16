@@ -5,8 +5,8 @@
 
 % Conversion: = 0.9V/278Tu = 0.00324 V per Teensy Unit [from lab 2]
 pressure = 0.00324 * double(A00) * (-2.4) + 7.97 % conversion based on calibration
-thermistor = A01 .* 0.00324
-PAR = (A02 .* 0.00324 .* 558) - 26.3
+thermistor = double(A01) * 0.00324 * (-0.391) + 20.6
+PAR = 558 * double(A02) * 0.00324 * 558 - 26.3
 
 
 % Teensy sampling frequency = 10 Hz
@@ -24,25 +24,8 @@ t_pho = [1: 10 * length(A02)] % A02 PAR
 
 % Thermistor: Call: A01 ///////////////////////////////////////////////////
 
-% Calibrate for Coeff of Steinhart-hart _______________________________
-A = 0.003246
-B = 8.163e-05
-C = -1.332e-05
-D = 7.202e-07
-
-    % Temp Calc: __________________________________________________________
-temp = [];
-for i = 1:length(thermistor);
-    % Equation
-    T = ( A + B*(ln(thermistor(:, i))) + C*(ln(thermistor(:, i)))^2 )+ D*(ln(thermistor(:, i)))^3 )
-    % Append
-    temp[end+1] = T;
-end
-
-
-
     % Plot ___________________________________________________________
-plot(pressure, temp)
+plot(pressure, thermistor)
 xlabel("Depth (m)")
 ylabel("Temp (C)")
 title("Thermistor Data")
