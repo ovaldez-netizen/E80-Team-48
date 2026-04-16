@@ -62,7 +62,7 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     uR = avgPower + u; //right motor+ correct force
     uL = avgPower - u; //left motor
 
-    uR = uR * Kr;
+    uR = uR *Kr;
     uL = uL * Kl;
 
     if (uR > 127) uR = 127; //limits
@@ -86,11 +86,11 @@ String SurfaceControl::printString(void) {
     printString += "SurfaceControl: Waiting to acquire more satellites...";
   }
   else {
-    printString += "SurfaceControl: ";
+    printString += "Surface: ";
     printString += "Yaw_Des: ";
     printString += String(yaw_des*180.0/PI);
-    printString += "[deg], ";
-    printString += "Yaw: ";
+    printString += "[, ";
+    printString += "Y ";
     printString += String(yaw*180.0/PI);
     printString += "[deg], ";
     printString += "u: ";
@@ -119,7 +119,7 @@ String SurfaceControl::printWaypointUpdate(void) {
     wayPointUpdate += "SurfaceControl: ";
     wayPointUpdate += "Current Waypoint: ";
     wayPointUpdate += String(currentWayPoint);
-    wayPointUpdate += "; Distance from Waypoint: ";
+    wayPointUpdate += "; Distance: ";
     wayPointUpdate += String(dist);
     wayPointUpdate += "[m]";
   }
