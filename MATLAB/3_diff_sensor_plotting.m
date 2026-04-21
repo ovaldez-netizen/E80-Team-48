@@ -25,10 +25,12 @@ t_pho = [1: 10 * length(A02)] % A02 PAR
 % Thermistor: Call: A01 ///////////////////////////////////////////////////
 
     % Plot ___________________________________________________________
-plot(pressure, thermistor)
+scatter(pressure, thermistor)
 xlabel("Depth (m)")
+xlim([0.02 0.14])
 ylabel("Temp (C)")
 title("Thermistor Data")
+
 
 
 
