@@ -24,11 +24,11 @@ t = 1:length(thermistor);
 % Plot ___________________________________________________________
 clf
 figure(1)
-subplot(2,1,1)
-scatter(pressure, thermistor)
-xlabel("Depth (m)")
+subplot(3,1,1)
+scatter(t, thermistor)
+xlabel("Samples")
 ylabel("Temp (C)")
-title("Thermistor vs. Depth")
+title("Thermistor vs. Samples")
 
 
 
@@ -47,8 +47,14 @@ title("Thermistor vs. Depth")
 
 
 % plot final values
-subplot(2,1,2)
-scatter(pressure, PAR)
-xlabel("Depth (m)")
+subplot(3,1,2)
+scatter(t, PAR)
+xlabel("Samples")
 ylabel("PAR (lux)")
-title("PAR Photodiode Data vs. Depth")
+title("PAR Photodiode Data vs. Samples ")
+
+subplot(3,1,3)
+scatter(t,pressure)
+xlabel('Samples')
+ylabel('Depth (m)')
+title('Pressure vs. Samples')
