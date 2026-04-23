@@ -4,9 +4,15 @@
 %% sample number)
 
 % Conversion: = 0.9V/278Tu = 0.00324 V per Teensy Unit [from lab 2]
+<<<<<<< HEAD
 pressure = 0.00324 * double(A00) * (-2.4) + 7.97; % conversion based on calibration
 thermistor = double(A01) * 0.00324 * (-0.391) + 20.6;
 PAR = 558 * double(A02) * 0.00324 * 558 - 26.3;
+=======
+pressure = (0.00324 * double(A00)) * (-2.4) + 7.97 % conversion based on calibration
+thermistor = (double(A01) * 0.00324) * (-0.391) + 20.6
+PAR = (double(A02) * 0.00324) * 558 - 26.3
+>>>>>>> a8356a4152ce2298d934a41a347c71f26788614f
 
 t = 1:length(thermistor);
 
@@ -21,14 +27,20 @@ t = 1:length(thermistor);
 
 % Thermistor: Call: A01 ///////////////////////////////////////////////////
 
+<<<<<<< HEAD
 % Plot ___________________________________________________________
 clf
 figure(1)
 subplot(2,1,1)
+=======
+    % Plot ___________________________________________________________
+>>>>>>> a8356a4152ce2298d934a41a347c71f26788614f
 scatter(pressure, thermistor)
 xlabel("Depth (m)")
+xlim([0.02 0.14])
 ylabel("Temp (C)")
 title("Thermistor vs. Depth")
+
 
 
 
@@ -51,4 +63,8 @@ subplot(2,1,2)
 scatter(pressure, PAR)
 xlabel("Depth (m)")
 ylabel("PAR (lux)")
+<<<<<<< HEAD
 title("PAR Photodiode Data vs. Depth")
+=======
+title("PAR Photodiode Data vs. Time ")
+>>>>>>> a8356a4152ce2298d934a41a347c71f26788614f
