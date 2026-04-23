@@ -41,4 +41,12 @@
 // Depth Control
 #define PRESSURE_PIN 14 // Teensy pin A00
 
+//Thermistor
+#define THERMISTOR_PIN 15 // Ribbon: A01
+
+//Photodiode
+#define PAR_PIN 16 //Ribbon: A02
+
 #endif
+
+

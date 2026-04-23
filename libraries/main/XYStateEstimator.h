@@ -41,8 +41,10 @@ public:
 
 private:
   // set coordinates of chosen origin below
-  const float origin_lat = 34.106465;
-  const float origin_lon = -117.712488;
+  // Dana Point Harbor — Ocean Institute pier launch point
+  // UPDATE these to your exact launch GPS reading before deployment!
+  const float origin_lat = 33.461200;
+  const float origin_lon = -117.691700;
 
   bool gpsAcquired;
 
